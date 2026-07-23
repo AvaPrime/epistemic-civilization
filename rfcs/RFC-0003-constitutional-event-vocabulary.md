@@ -1,9 +1,9 @@
 ---
 Specification: RFC-0003 Constitutional Event Vocabulary
-Version: 0.1
-Status: Draft
+Version: 0.2
+Status: Revised Draft
 Authority: Institutional Constitution v0.1
-Supersedes: none
+Supersedes: RFC-0003 v0.1
 Superseded-By: none
 Depends-On: RFC-0001, RFC-0002, Institutional Constitution v0.1
 Last-Ratified: none
@@ -12,13 +12,13 @@ Normative: false
 
 # RFC-0003: Constitutional Event Vocabulary
 
-**Status**: Draft  
+**Status**: Revised Draft  
 **Type**: Design  
 **Date**: 2026-07-23
 
 ## 1. Summary
 
-This RFC proposes the closed set of constitutional events that may appear in the institutional event log. It defines only the event vocabulary and its extension mechanism. It does not define object semantics (owned by RFC-0002), operations (RFC-0004), or invariants (RFC-0005).
+This RFC proposes the closed set of constitutional events that may appear in the institutional event log. It defines only the event vocabulary, minimal ordering requirements, and the extension mechanism. It does not define object semantics (owned by RFC-0002), legal transformation rules (RFC-0004), or invariants (RFC-0005).
 
 ## 2. Motivation
 
@@ -32,25 +32,32 @@ Law III (Replayable Evolution) requires that every material change be attributab
 2. Vendor- or implementation-specific events MAY exist but MUST be namespaced and MUST NOT alter constitutional semantics.
 3. Every constitutional event MUST reference the constitutional identity of the affected object(s) and carry provenance sufficient for replay.
 4. Events record that something occurred; they do not themselves perform reasoning or governance.
+5. The ordered sequence of Constitutional Events SHALL be sufficient to deterministically reconstruct Constitutional State. Any event that changes Constitutional State MUST therefore include the information necessary to compute that resulting state.
 
-### 3.2 Proposed Core Events (Closed Set)
+### 3.2 Constitutional vs Operational Events
 
-| Event                      | Description |
-|----------------------------|-------------|
-| `ObservationRecorded`      | Raw external information has been detected (Constitutional State: Observed). |
-| `ObjectPublished`          | An epistemic object has been published into the institution (typically Provisional). |
-| `ObjectPromoted`           | An object has transitioned to a higher Constitutional State (e.g., Provisional → Institutional). |
-| `ObjectRevised`            | A new immutable version of an existing object has been created. |
-| `ObjectArchived`           | An object has entered the Historical state. |
-| `DecisionRecorded`         | A Decision object has been created or ratified. |
-| `TheoryUpdated`            | A Theory has been revised or replaced under governed process. |
-| `ArtifactReleased`         | A formal publication or external release has occurred. |
-| `RatificationGranted`      | A recognized authority has ratified a gated transition. |
-| `RatificationDenied`       | A recognized authority has denied a gated transition. |
+**Constitutional events** record changes to institutional knowledge state.  
+**Operational events** record implementation or infrastructure activity (HTTP requests, webhooks, database commits, notebook synchronisations, etc.).
 
-This list is intentionally minimal. Additional granularity belongs either in object-specific attributes or in namespaced extension events.
+The CEK and the institutional event log govern only constitutional events. Operational events MAY be recorded for convenience but have no constitutional standing and MUST NOT alter the meaning or validity of core events.
 
-### 3.3 Extension Mechanism
+### 3.3 Core Events (Closed Set)
+
+| Event                  | Description |
+|------------------------|-------------|
+| `ObservationRecorded`  | Raw external information has been detected (Constitutional State: Observed). |
+| `ObjectPublished`      | An epistemic object has been published into the institution (typically Provisional). |
+| `ObjectPromoted`       | An object has transitioned to a higher Constitutional State (e.g., Provisional → Institutional). |
+| `ObjectRevised`        | A new immutable version of an existing object has been created. |
+| `ObjectArchived`       | An object has entered the Historical state. |
+| `DecisionRecorded`     | A Decision object has been created or ratified. |
+| `ArtifactReleased`     | A formal publication or external release has occurred under governed process. |
+| `RatificationGranted`  | A recognized authority has ratified a gated transition. |
+| `RatificationDenied`   | A recognized authority has denied a gated transition. |
+
+The vocabulary is deliberately type-agnostic. Object-specific behaviour (including changes to a Theory) is expressed through ordinary `ObjectRevised` events, optionally linked to a `DecisionRecorded` event. No core event is reserved for a particular object type.
+
+### 3.4 Extension Mechanism
 
 Implementations and Research Programs MAY define namespaced events of the form:
 
@@ -58,49 +65,55 @@ Implementations and Research Programs MAY define namespaced events of the form:
 <namespace>.<EventName>
 ```
 
-Examples:
+Examples: `github.PullRequestMerged`, `gemini.NotebookImported`, `openclaw.SkillExecuted`.
 
-- `github.PullRequestMerged`
-- `gemini.NotebookImported`
-- `openclaw.SkillExecuted`
+**Non-interference rule**  
+Extension events MUST NOT alter the semantics of core constitutional events. The presence or absence of any namespaced event SHALL NOT change the meaning or validity of a core event. Namespaced events carry no constitutional force unless elevated by a later RFC.
 
-Namespaced events MUST NOT be treated as constitutional core events. They MAY be recorded in the same event log for operational convenience but carry no constitutional force unless a later RFC elevates them.
+### 3.5 Ordering and Required Fields
 
-### 3.4 Required Event Fields
+Events that affect the same constitutional identity MUST form a total order.
 
 Every constitutional event SHALL carry at least:
 
 - Event type (from the closed core or a namespace)
-- Timestamp
+- Timestamp (or equivalent ordering key)
 - Constitutional identity of primary affected object(s)
 - Provenance (actor / system / source)
-- Optional: prior version identity, resulting Constitutional State, linked Decision
 
-Exact serialisation is an implementation concern.
+In addition:
 
-### 3.5 Explicit Non-Goals
+- Any event that changes Constitutional State MUST include the resulting Constitutional State.
+- Any revision event (`ObjectRevised`) MUST include the prior version identity.
+- Causal links that are required for legality (e.g., a ratification that authorises a promotion) SHOULD be recorded explicitly or be deterministically recoverable from the log.
+
+Exact serialisation and choice of logical clock are implementation concerns.
+
+### 3.6 Explicit Non-Goals
 
 - Object type definitions (RFC-0002)
-- Operation pre/postconditions (RFC-0004)
+- Legal transformation rules and preconditions (RFC-0004)
 - Global invariants (RFC-0005)
+- Event validation rules or cryptographic signatures
 - Routing, scheduling, or human-gate procedures (Research Controller)
 - Storage format or transport protocol
 
 ## 4. Open Questions
 
-1. Is `TheoryUpdated` distinct enough from `ObjectRevised`, or should Theory changes be ordinary revisions plus a Decision?
-2. Should `RatificationGranted` / `RatificationDenied` be core events or namespaced under a governance namespace?
-3. Is a dedicated `ContradictionDetected` event warranted, or is contradiction adequately expressed as relationships among Claims/Hypotheses?
+1. Should `RatificationGranted` / `RatificationDenied` remain core events, or move under a governance namespace while retaining constitutional force?
+2. Is a dedicated `ContradictionDetected` event warranted, or is contradiction adequately expressed as relationships among Claims/Hypotheses?
+3. Should `ArtifactReleased` remain distinct, or is it adequately covered by `ObjectPromoted` + `DecisionRecorded`?
 
 ## 5. Acceptance Criteria
 
 This RFC may be marked Accepted when:
 
 - The closed core event set is agreed as minimal and sufficient.
-- The extension (namespacing) mechanism is agreed.
-- Required event fields are agreed.
+- The constitutional-versus-operational distinction is agreed.
+- The non-interference rule for extension events is agreed.
+- Ordering requirements and mandatory fields for state-changing and revision events are agreed.
 - Non-goals are confirmed.
 
 ## 6. Status
 
-**Draft**. Discussion and refinement are open.
+**Revised Draft**. Ready for final review pass targeting only remaining ambiguity or inconsistency.
