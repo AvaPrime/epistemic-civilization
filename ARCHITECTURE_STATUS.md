@@ -21,13 +21,13 @@ This file is the single source of truth for the current constitutional and speci
 
 ## Active RFCs
 
-| RFC     | Title                                      | Status     |
-|---------|--------------------------------------------|------------|
-| RFC-0001 | Institutional Constitution Ratification   | **Accepted** (historical record) |
-| RFC-0002 | CEK Object Model                           | **Draft**  |
-| RFC-0003 | Constitutional Event Vocabulary            | Planned   |
-| RFC-0004 | Legal Transformation Rules                 | Planned   |
-| RFC-0005 | Invariant Catalogue                        | Planned   |
+| RFC      | Title                                      | Status              |
+|----------|--------------------------------------------|---------------------|
+| RFC-0001 | Institutional Constitution Ratification    | **Accepted** (historical record) |
+| RFC-0002 | CEK Object Model                           | **Revised Draft**   |
+| RFC-0003 | Constitutional Event Vocabulary            | Planned             |
+| RFC-0004 | Legal Transformation Rules                 | Planned             |
+| RFC-0005 | Invariant Catalogue                        | Planned             |
 
 ---
 
@@ -61,7 +61,7 @@ This file is the single source of truth for the current constitutional and speci
 
 ## Next Actions
 
-1. Review and accept (or refine) RFC-0002 CEK Object Model.
+1. Final review pass of RFC-0002 (Revised Draft) and promote to Accepted.
 2. Draft RFC-0003 (Event Vocabulary), RFC-0004 (Legal Transformation Rules), RFC-0005 (Invariant Catalogue).
 3. Once supporting RFCs are Accepted, generate CEK v0.1 skeleton and populate from Accepted RFCs only.
 4. Proceed to EIS → RC → RPS.
