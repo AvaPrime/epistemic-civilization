@@ -12,7 +12,7 @@ This file is the single source of truth for the current constitutional and speci
 | Specification                        | Version | Status                          | Notes |
 |--------------------------------------|---------|---------------------------------|-------|
 | Institutional Constitution           | v0.1    | **Ratified (v0.x exploratory)** | Frozen. Amendments require concrete ambiguity, inconsistency, or governance failure. |
-| Computational Constitution (CEK)     | —       | Planned                         | Awaits Accepted RFCs (0002–0005). |
+| Computational Constitution (CEK)     | —       | Planned                         | Awaits Accepted RFCs (0002–0006). |
 | Epistemic Intake Specification (EIS) | —       | Planned                         | Depends on CEK. |
 | Research Controller (RC)             | —       | Planned                         | Depends on CEK + EIS. |
 | Research Program Specification (RPS) | —       | Planned                         | Depends on Constitution. |
@@ -28,6 +28,20 @@ This file is the single source of truth for the current constitutional and speci
 | RFC-0003 | Constitutional Event Vocabulary            | **Revised Draft**   |
 | RFC-0004 | Legal Transformation Rules                 | Planned             |
 | RFC-0005 | Invariant Catalogue                        | Planned             |
+| RFC-0006 | Conformance Philosophy                     | Planned             |
+
+---
+
+## CEK Chapter → Source RFC Mapping
+
+| CEK Chapter              | Source RFC |
+|--------------------------|------------|
+| Ontology                 | RFC-0002   |
+| Event Vocabulary         | RFC-0003   |
+| Legal Transformations    | RFC-0004   |
+| Invariants               | RFC-0005   |
+| Metrics                  | (future RFC if needed) |
+| Conformance              | RFC-0006   |
 
 ---
 
@@ -62,8 +76,9 @@ This file is the single source of truth for the current constitutional and speci
 
 ## Next Actions
 
-1. Final review pass of RFC-0003 (Revised Draft) targeting only remaining ambiguity or inconsistency; then promote to Accepted.
+1. Final review pass of RFC-0003 (Revised Draft); promote to Accepted.
 2. Draft RFC-0004 (Legal Transformation Rules).
 3. Draft RFC-0005 (Invariant Catalogue).
-4. Once RFCs 0002–0005 are Accepted, generate CEK v0.1 skeleton and populate from Accepted RFCs only.
-5. Proceed to EIS → RC → RPS.
+4. Draft RFC-0006 (Conformance Philosophy).
+5. Once RFCs 0002–0006 are Accepted, generate CEK v0.1 skeleton and populate from Accepted RFCs only.
+6. Proceed to EIS → RC → RPS.
