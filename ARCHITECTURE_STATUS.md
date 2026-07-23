@@ -12,10 +12,22 @@ This file is the single source of truth for the current constitutional and speci
 | Specification                        | Version | Status                          | Notes |
 |--------------------------------------|---------|---------------------------------|-------|
 | Institutional Constitution           | v0.1    | **Ratified (v0.x exploratory)** | Frozen. Amendments require concrete ambiguity, inconsistency, or governance failure. |
-| Computational Constitution (CEK)     | —       | Planned                         | Next specification. |
+| Computational Constitution (CEK)     | —       | Planned                         | Awaits Accepted RFCs (0002–0005). |
 | Epistemic Intake Specification (EIS) | —       | Planned                         | Depends on CEK. |
 | Research Controller (RC)             | —       | Planned                         | Depends on CEK + EIS. |
 | Research Program Specification (RPS) | —       | Planned                         | Depends on Constitution. |
+
+---
+
+## Active RFCs
+
+| RFC     | Title                                      | Status     |
+|---------|--------------------------------------------|------------|
+| RFC-0001 | Institutional Constitution Ratification   | **Accepted** (historical record) |
+| RFC-0002 | CEK Object Model                           | **Draft**  |
+| RFC-0003 | Constitutional Event Vocabulary            | Planned   |
+| RFC-0004 | Legal Transformation Rules                 | Planned   |
+| RFC-0005 | Invariant Catalogue                        | Planned   |
 
 ---
 
@@ -43,14 +55,13 @@ This file is the single source of truth for the current constitutional and speci
 - Changes to the Institutional Constitution require identification of a concrete ambiguity, inconsistency, or governance failure. New ideas alone are not sufficient grounds for amendment.
 - Subordinate specifications MAY evolve under their own versioning rules provided they remain consistent with the Institutional Constitution.
 - Knowledge is governed; tools are replaceable.
+- Architectural exploration occurs in RFCs; normative specifications incorporate only Accepted decisions.
 
 ---
 
 ## Next Actions
 
-1. Complete Phase 0 release (this baseline).
-2. Draft Computational Constitution (CEK) v0.1.
-3. Draft Epistemic Intake Specification (EIS) v0.1.
-4. Draft Research Controller Specification (RC) v0.1.
-5. Draft Research Program Specification (RPS) v0.1.
-6. Instantiate the first Research Program: Computational Epistemology.
+1. Review and accept (or refine) RFC-0002 CEK Object Model.
+2. Draft RFC-0003 (Event Vocabulary), RFC-0004 (Legal Transformation Rules), RFC-0005 (Invariant Catalogue).
+3. Once supporting RFCs are Accepted, generate CEK v0.1 skeleton and populate from Accepted RFCs only.
+4. Proceed to EIS → RC → RPS.
