@@ -1,9 +1,9 @@
 ---
 Specification: RFC-0003 Constitutional Event Vocabulary
-Version: 0.2
+Version: 0.3
 Status: Revised Draft
 Authority: Institutional Constitution v0.1
-Supersedes: RFC-0003 v0.1
+Supersedes: RFC-0003 v0.2
 Superseded-By: none
 Depends-On: RFC-0001, RFC-0002, Institutional Constitution v0.1
 Last-Ratified: none
@@ -76,8 +76,9 @@ Events that affect the same constitutional identity MUST form a total order.
 
 Every constitutional event SHALL carry at least:
 
+- Event ID (stable unique identifier of the event itself)
 - Event type (from the closed core or a namespace)
-- Timestamp (or equivalent ordering key)
+- Timestamp or equivalent ordering token
 - Constitutional identity of primary affected object(s)
 - Provenance (actor / system / source)
 
@@ -85,7 +86,8 @@ In addition:
 
 - Any event that changes Constitutional State MUST include the resulting Constitutional State.
 - Any revision event (`ObjectRevised`) MUST include the prior version identity.
-- Causal links that are required for legality (e.g., a ratification that authorises a promotion) SHOULD be recorded explicitly or be deterministically recoverable from the log.
+
+A constitutional event SHALL preserve sufficient information for causal dependencies to be reconstructed. Implementations MAY satisfy this through explicit causal references, derivable causal relationships, or another conforming mechanism defined by the Conformance specification.
 
 Exact serialisation and choice of logical clock are implementation concerns.
 
@@ -94,6 +96,7 @@ Exact serialisation and choice of logical clock are implementation concerns.
 - Object type definitions (RFC-0002)
 - Legal transformation rules and preconditions (RFC-0004)
 - Global invariants (RFC-0005)
+- Conformance criteria and validation mechanisms (RFC-0006)
 - Event validation rules or cryptographic signatures
 - Routing, scheduling, or human-gate procedures (Research Controller)
 - Storage format or transport protocol
@@ -112,6 +115,7 @@ This RFC may be marked Accepted when:
 - The constitutional-versus-operational distinction is agreed.
 - The non-interference rule for extension events is agreed.
 - Ordering requirements and mandatory fields for state-changing and revision events are agreed.
+- Causality is left implementation-independent as stated in §3.5.
 - Non-goals are confirmed.
 
 ## 6. Status
