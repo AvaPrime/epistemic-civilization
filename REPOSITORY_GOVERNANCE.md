@@ -16,6 +16,18 @@ This document defines how the `epistemic-civilization` repository itself is gove
 4. Upon acceptance they are merged to `main` and the `specification_index.md` and `ARCHITECTURE_STATUS.md` are updated in the same commit series.
 5. Releases that change constitutional or core specification status receive annotated tags.
 
+## RFC Lifecycle and Append-Only Rule
+
+RFC stages: Draft → Review → Accepted | Rejected | Deferred | Superseded.
+
+**Accepted RFCs are append-only.**  
+If an Accepted RFC requires a substantive change, do not edit it in place. Instead:
+
+- publish a new RFC that amends or supersedes it, or
+- apply only clearly identified editorial (non-semantic) corrections.
+
+This preserves auditability and replayability of architectural decisions.
+
 ## ADR Requirement
 
 Significant architectural or governance decisions MUST be recorded as Architecture Decision Records in `/adrs`.
