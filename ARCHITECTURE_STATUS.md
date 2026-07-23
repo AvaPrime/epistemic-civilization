@@ -23,9 +23,9 @@ This file is the single source of truth for the current constitutional and speci
 
 | RFC      | Title                                      | Status              |
 |----------|--------------------------------------------|---------------------|
-| RFC-0001 | Institutional Constitution Ratification    | **Accepted** (historical record) |
-| RFC-0002 | CEK Object Model                           | **Revised Draft**   |
-| RFC-0003 | Constitutional Event Vocabulary            | Planned             |
+| RFC-0001 | Institutional Constitution Ratification    | **Accepted**        |
+| RFC-0002 | CEK Object Model                           | **Accepted**        |
+| RFC-0003 | Constitutional Event Vocabulary            | **Draft**           |
 | RFC-0004 | Legal Transformation Rules                 | Planned             |
 | RFC-0005 | Invariant Catalogue                        | Planned             |
 
@@ -56,12 +56,13 @@ This file is the single source of truth for the current constitutional and speci
 - Subordinate specifications MAY evolve under their own versioning rules provided they remain consistent with the Institutional Constitution.
 - Knowledge is governed; tools are replaceable.
 - Architectural exploration occurs in RFCs; normative specifications incorporate only Accepted decisions.
+- **Accepted RFCs are append-only.** Substantive changes require a superseding RFC.
 
 ---
 
 ## Next Actions
 
-1. Final review pass of RFC-0002 (Revised Draft) and promote to Accepted.
-2. Draft RFC-0003 (Event Vocabulary), RFC-0004 (Legal Transformation Rules), RFC-0005 (Invariant Catalogue).
-3. Once supporting RFCs are Accepted, generate CEK v0.1 skeleton and populate from Accepted RFCs only.
+1. Review and accept (or refine) RFC-0003 Constitutional Event Vocabulary.
+2. Draft RFC-0004 (Legal Transformation Rules) and RFC-0005 (Invariant Catalogue).
+3. Once RFCs 0002–0005 are Accepted, generate CEK v0.1 skeleton and populate from Accepted RFCs only.
 4. Proceed to EIS → RC → RPS.
