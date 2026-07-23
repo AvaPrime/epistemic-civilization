@@ -1,18 +1,18 @@
 ---
 Specification: RFC-0002 CEK Object Model
-Version: 0.2
-Status: Revised Draft
+Version: 1.0
+Status: Accepted
 Authority: Institutional Constitution v0.1
-Supersedes: RFC-0002 v0.1
+Supersedes: RFC-0002 v0.2 (Revised Draft)
 Superseded-By: none
 Depends-On: RFC-0001, Institutional Constitution v0.1
-Last-Ratified: none
+Last-Ratified: 2026-07-23
 Normative: false
 ---
 
 # RFC-0002: CEK Object Model
 
-**Status**: Revised Draft  
+**Status**: Accepted  
 **Type**: Design  
 **Date**: 2026-07-23
 
@@ -83,21 +83,19 @@ This RFC does **not** define:
 
 Those concerns belong to subsequent RFCs or subordinate specifications.
 
-## 4. Open Questions
+## 4. Review Note for RFC-0005
 
-None remaining for this RFC. Prior open questions regarding Canonical Definition and Experiment have been resolved in this revision.
+Identity, Version History, and Constitutional State are three independent dimensions of an epistemic object. RFC-0005 (Invariant Catalogue) SHOULD elevate this independence to an explicit named invariant to support replayability and conformance testing.
 
-## 5. Acceptance Criteria
+## 5. Acceptance Record
 
-This RFC may be marked Accepted when:
+**Accepted** on 2026-07-23 after architectural review against completeness, orthogonality, identity, lifecycle, authority separation, and implementation independence.
 
-- The seven object types and their epistemic roles are agreed.
-- Canonical Definition is accepted as a Claim specialization.
-- The Identity Invariant (stable identity, versioned revisions, permanent history) is agreed.
-- The distinction between constitutional identity and implementation identity is agreed.
-- The Evidence content constraint is agreed.
-- Non-goals are confirmed.
+Amendments incorporated prior to acceptance:
 
-## 6. Status
+- Canonical Definition as Claim specialization
+- Identity Invariant (stable identity, versioned revisions, permanent history)
+- Evidence content immutability after Institutional publication
+- Distinction between constitutional identity and implementation identity
 
-**Revised Draft**. Ready for final review pass and promotion to Accepted.
+This RFC is now append-only. Substantive changes require a superseding RFC.
